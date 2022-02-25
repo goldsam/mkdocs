@@ -1,0 +1,6 @@
+site_name: Plantuml Example
+theme: readthedocs
+
+markdown_extensions:
+  - plantuml_markdown:
+      server: !ENV PLANTUML_SERVER
