@@ -20,7 +20,7 @@ while true; do
   http_code=$(curl -s -o /dev/null -L -w '%{http_code}' "$http_endpoint")
 
   if [ "$http_code" -eq 200 ]; then
-    printf 'plantuml server is ready.'
+    printf '\nplantuml server is ready.\n'
     break
   fi
 
