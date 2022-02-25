@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.authors="sam.goldmann@gmail.com"
 RUN apk --no-cache add python3 py3-httplib2 py-pip graphviz ttf-dejavu curl
 
 # Python modules
-RUN pip install packaging mkdocs python-plantuml plantuml-markdown mkdocs-material
+RUN pip install packaging mkdocs plantuml-markdown mkdocs-material
 
 # Plantuml 
 ENV PLANTUML_VERSION 1.2022.1
