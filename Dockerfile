@@ -2,10 +2,11 @@ FROM openjdk:18-alpine3.15
 
 LABEL org.opencontainers.image.authors="sam.goldmann@gmail.com"
 
-# System packages and python modules
-RUN apk --no-cache add python3 py3-httplib2 py-pip graphviz ttf-dejavu curl git \
-    && pip install packaging mkdocs git+https://github.com/goldsam/python-plantuml#egg=plantuml plantuml-markdown mkdocs-material \
-    && apk del git
+# System packages
+RUN apk --no-cache add python3 py3-httplib2 py-pip graphviz ttf-dejavu curl
+
+# Python modules
+RUN pip install packaging mkdocs python-plantuml plantuml-markdown mkdocs-material
 
 # Plantuml 
 ENV PLANTUML_VERSION 1.2022.1
