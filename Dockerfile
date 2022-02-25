@@ -2,11 +2,17 @@ FROM openjdk:18-alpine3.15
 
 LABEL org.opencontainers.image.authors="sam.goldmann@gmail.com"
 
+ENV MKDOCS_VERSION 1.2.3
+ENV PLANTUML_MARKDOWN_VERSION 3.5.1
+ENV MKDOCS_MATERIAL_VERSION 8.2.1
+
 # System packages
 RUN apk --no-cache add python3 py3-httplib2 py-pip graphviz ttf-dejavu curl
 
 # Python modules
-RUN pip install packaging mkdocs plantuml-markdown mkdocs-material
+RUN echo -e "packaging\nmkdocs==${MKDOCS_VERSION}\nplantuml-markdown==${PLANTUML_MARKDOWN_VERSION}\nmkdocs-material==${MKDOCS_MATERIAL_VERSION}\n" > /tmp/requirements.txt \
+    && pip install -r /tmp/requirements.txt \
+    && rm -f /tmp/requirements.txt
 
 # Plantuml 
 ENV PLANTUML_VERSION 1.2022.1
