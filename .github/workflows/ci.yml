@@ -28,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: name/app
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/mkdocs
           tags: |
             type=ref,event=branch
             type=ref,event=pr
