@@ -3,14 +3,32 @@ FROM openjdk:18-alpine3.15
 LABEL org.opencontainers.image.authors="sam.goldmann@gmail.com"
 
 ENV MKDOCS_VERSION 1.2.3
-ENV PLANTUML_MARKDOWN_VERSION 3.5.1
+ENV PLANTUML_MARKDOWN_VERSION 3.5.2
 ENV MKDOCS_MATERIAL_VERSION 8.2.1
+ENV MKDOCS_AWESOME_PAGES_PLUGIN_VERSION 2.7.0
+ENV MKDOCS_JUPYTER_VERSION 0.20.0
+ENV MKNOTEBOOKS_VERSION 0.7.1
+ENV MKDOCS_MACROS_PLUGIN_VERSION 0.6.4
 
 # System packages
-RUN apk --no-cache add python3 py3-httplib2 py-pip graphviz ttf-dejavu curl
+RUN apk --no-cache add python3 py3-httplib2 py-pip graphviz ttf-dejavu py3-pyzmq curl
+
+RUN echo 'All of your\n\
+multiline that you ever wanted\n\
+into a dockerfile\n'\
+>> /etc/example.conf
 
 # Python modules
-RUN echo -e "packaging\nmkdocs==${MKDOCS_VERSION}\nplantuml-markdown==${PLANTUML_MARKDOWN_VERSION}\nmkdocs-material==${MKDOCS_MATERIAL_VERSION}\n" > /tmp/requirements.txt \
+RUN echo -e 'packaging\n\
+PEP517\n\
+mkdocs==${MKDOCS_VERSION}\n\
+plantuml-markdown==${PLANTUML_MARKDOWN_VERSION}\n\
+mkdocs-material==${MKDOCS_MATERIAL_VERSION}\n\
+mkdocs-awesome-pages-plugin==${MKDOCS_AWESOME_PAGES_PLUGIN_VERSION}\n\
+mkdocs-jupyter==${MKDOCS_JUPYTER_VERSION}\n\
+mknotebooks==${MKNOTEBOOKS_VERSION}\n\
+mkdocs-macros-plugin==${MKDOCS_MACROS_PLUGIN_VERSION}\n'\
+> /tmp/requirements.txt \
     && pip install -r /tmp/requirements.txt \
     && rm -f /tmp/requirements.txt
 
